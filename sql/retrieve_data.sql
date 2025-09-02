@@ -64,3 +64,11 @@ Select * from financial_loan;
 
 -- lets check if the rows match the rows in the csv file
 select count(id) as total_loan_applications from financial_loan;
+
+
+-- here while pushing this file to the github repo you might face the isssue of 
+-- Git: RPC failed; HTTP 400 curl 56 The requested URL returned error: 400
+
+-- so you need to write one line of code to increase the size of the git's buffer size using the below mentioned line 
+
+git config --global http.postBuffer 524288000
