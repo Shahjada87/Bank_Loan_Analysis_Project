@@ -89,6 +89,64 @@ git config --global http.postBuffer 524288000
  Additionally, it is essential to monitor the Month-to-Date (MTD) Loan Applications and track changes Month-over-Month (MoM).
 
 Select count(id) as MonthToDate_Total_loan_applications from financial_loan
-where month(issue_date) = 11 and YEAR(issue_date) = 2021;
+where month(issue_date) = 12 and YEAR(issue_date) = 2021;
+
+
+Output 
++-------------------------------------+
+| MonthToDate_Total_loan_applications |
++-------------------------------------+
+|                                4314 |
++-------------------------------------+
+1 row in set (0.10 sec)
+
+
+
+-- Now lets do the Month over Month (MOM)
+
+WITH monthly_applications AS (
+    SELECT 
+        DATE_FORMAT(issue_date, '%Y-%m') AS month,
+        COUNT(id) AS applications
+    FROM financial_loan
+    GROUP BY DATE_FORMAT(issue_date, '%Y-%m')
+)
+SELECT 
+    month,
+    applications,
+    LAG(applications) OVER (ORDER BY month) AS prev_month_applications,
+    ROUND(
+        (applications - LAG(applications) OVER (ORDER BY month)) 
+        / NULLIF(LAG(applications) OVER (ORDER BY month),0) * 100, 2
+    ) AS MoM_change_percent
+FROM monthly_applications
+ORDER BY month;
+
+
+Output
++---------+--------------+-------------------------+--------------------+
+| month   | applications | prev_month_applications | MoM_change_percent |
++---------+--------------+-------------------------+--------------------+
+| 2021-01 |         2332 |                    NULL |               NULL |
+| 2021-02 |         2279 |                    2332 |              -2.27 |
+| 2021-03 |         2627 |                    2279 |              15.27 |
+| 2021-04 |         2755 |                    2627 |               4.87 |
+| 2021-05 |         2911 |                    2755 |               5.66 |
+| 2021-06 |         3184 |                    2911 |               9.38 |
+| 2021-07 |         3366 |                    3184 |               5.72 |
+| 2021-08 |         3441 |                    3366 |               2.23 |
+| 2021-09 |         3536 |                    3441 |               2.76 |
+| 2021-10 |         3796 |                    3536 |               7.35 |
+| 2021-11 |         4035 |                    3796 |               6.30 |
+| 2021-12 |         4314 |                    4035 |               6.91 |
++---------+--------------+-------------------------+--------------------+
+12 rows in set (0.07 sec)
+
+
+
+
+2. Total Funded Amount: Understanding the total amount of funds disbursed as loans is crucial. 
+We also want to keep an eye on the MTD Total Funded Amount and analyse the Month-over-Month (MoM) changes in this metric.
+
 
 
