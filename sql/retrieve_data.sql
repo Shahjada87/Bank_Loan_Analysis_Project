@@ -312,3 +312,74 @@ Output
 
 
 
+4. Average Interest Rate: Calculating the average interest rate across all loans, MTD, and monitoring the Month-over-Month (MoM) 
+variations in interest rates will provide insights into our lending portfolios overall cost.
+
+
+SELECT ROUND(AVG(int_rate) * 100, 2) AS Avg_interest_rate FROM financial_loan;
+
+Output
++-------------------+
+| Avg_interest_rate |
++-------------------+
+|             12.05 |
++-------------------+
+1 row in set (0.05 sec)
+
+
+
+SELECT ROUND(AVG(int_rate) * 100, 2) AS Avg_interest_rate FROM financial_loan
+where month(issue_date) = 12 and year(issue_date) = 2021;
+
+
+Output 
++-------------------+
+| Avg_interest_rate |
++-------------------+
+|             12.36 |
++-------------------+
+1 row in set (0.03 sec)
+
+
+
+WITH monthly_interest AS (
+    SELECT 
+        DATE_FORMAT(issue_date, '%Y-%m') AS month,
+        ROUND(AVG(int_rate) * 100, 2) AS avg_interest_rate -- convert fraction to %
+    FROM financial_loan
+    GROUP BY DATE_FORMAT(issue_date, '%Y-%m')
+)
+SELECT 
+    month,
+    avg_interest_rate,
+    LAG(avg_interest_rate) OVER (ORDER BY month) AS prev_month_rate,
+    ROUND(
+        (avg_interest_rate - LAG(avg_interest_rate) OVER (ORDER BY month)) 
+        / NULLIF(LAG(avg_interest_rate) OVER (ORDER BY month), 0) * 100, 2
+    ) AS MoM_change_percent
+FROM monthly_interest
+ORDER BY month;
+
+
+Output
++---------+-------------------+-----------------+--------------------+
+| month   | avg_interest_rate | prev_month_rate | MoM_change_percent |
++---------+-------------------+-----------------+--------------------+
+| 2021-01 |             11.46 |            NULL |               NULL |
+| 2021-02 |             11.72 |           11.46 |               2.27 |
+| 2021-03 |             11.86 |           11.72 |               1.19 |
+| 2021-04 |             11.74 |           11.86 |              -1.01 |
+| 2021-05 |             12.26 |           11.74 |               4.43 |
+| 2021-06 |             12.27 |           12.26 |               0.08 |
+| 2021-07 |             12.24 |           12.27 |              -0.24 |
+| 2021-08 |              12.3 |           12.24 |               0.49 |
+| 2021-09 |                12 |            12.3 |              -2.44 |
+| 2021-10 |             12.02 |              12 |               0.17 |
+| 2021-11 |             11.94 |           12.02 |              -0.67 |
+| 2021-12 |             12.36 |           11.94 |               3.52 |
++---------+-------------------+-----------------+--------------------+
+12 rows in set (0.06 sec)
+
+
+
+
