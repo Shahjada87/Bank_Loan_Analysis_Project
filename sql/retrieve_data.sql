@@ -64,7 +64,15 @@ IGNORE 1 ROWS;
 
 -- now lets check if the data is loaded properly or not
 Select * from financial_loan
-limit 100;
+limit 3;
+
++-------+---------------+------------------+------------+------------------------+-------+----------------+------------+-----------------------+-------------------+-------------+-------------------+-----------+--------------------+-----------+------------+---------------------+---------------+--------+-------------+----------+-------------+-----------+---------------+
+| id    | address_state | application_type | emp_length | emp_title              | grade | home_ownership | issue_date | last_credit_pull_date | last_payment_date | loan_status | next_payment_date | member_id | purpose            | sub_grade | term       | verification_status | annual_income | dti    | installment | int_rate | loan_amount | total_acc | total_payment |
++-------+---------------+------------------+------------+------------------------+-------+----------------+------------+-----------------------+-------------------+-------------+-------------------+-----------+--------------------+-----------+------------+---------------------+---------------+--------+-------------+----------+-------------+-----------+---------------+
+| 54734 | CA            | INDIVIDUAL       | < 1 year   |                        | B     | RENT           | 2021-08-09 | 2021-08-12            | 2021-10-11        | Fully Paid  | 2021-11-11        |     80364 | Debt consolidation | B4        |  36 months | Verified            |         85000 | 0.1948 |       829.1 |   0.1189 |       25000 |        42 |         29330 |
+| 55742 | NY            | INDIVIDUAL       | < 1 year   | CNN                    | B     | RENT           | 2021-05-08 | 2021-08-12            | 2021-06-11        | Fully Paid  | 2021-07-11        |    114426 | credit card        | B5        |  36 months | Not Verified        |         65000 | 0.1429 |      228.22 |   0.1071 |        7000 |         7 |          8216 |
+| 57245 | TX            | INDIVIDUAL       | 10+ years  | city of beaumont texas | C     | OWN            | 2021-03-10 | 2021-05-16            | 2021-03-13        | Fully Paid  | 2021-04-13        |    138150 | Debt consolidation | C2        |  36 months | Not Verified        |         54000 | 0.0547 |        40.5 |   0.1311 |        1200 |        31 |          1458 |
++-------+---------------+------------------+------------+------------------------+-------+----------------+------------+-----------------------+-------------------+-------------+-------------------+-----------+--------------------+-----------+------------+---------------------+---------------+--------+-------------+----------+-------------+-----------+---------------+
 
 
 -- lets check if the rows match the rows in the csv file
@@ -149,4 +157,69 @@ Output
 We also want to keep an eye on the MTD Total Funded Amount and analyse the Month-over-Month (MoM) changes in this metric.
 
 
+Select sum(loan_amount) from financial_loan;
 
+Output
++------------------+
+| sum(loan_amount) |
++------------------+
+|        435757075 |
++------------------+
+1 row in set (0.03 sec)
+
+
+
+Select sum(loan_amount) as MonthtoMonth_Total_amount_recieved from financial_loan
+where MONTH(issue_date) = 12 and year(issue_date) = 2021;
+
+
+Output 
++------------------------------------+
+| MonthtoMonth_Total_amount_recieved |
++------------------------------------+
+|                           53981425 |
++------------------------------------+
+1 row in set (0.03 sec)
+
+
+
+WITH monthly_funded AS (
+    SELECT 
+        DATE_FORMAT(issue_date, '%Y-%m') AS month,
+        SUM(loan_amount) AS total_funded_current_month
+    FROM financial_loan
+    GROUP BY DATE_FORMAT(issue_date, '%Y-%m')
+)
+SELECT 
+    month,
+    total_funded_current_month,
+    LAG(total_funded_current_month) OVER (ORDER BY month) AS prev_month_funded,
+    ROUND(
+        (total_funded_current_month - LAG(total_funded_current_month) OVER (ORDER BY month)) 
+        / NULLIF(LAG(total_funded_current_month) OVER (ORDER BY month), 0) * 100, 2
+    ) AS MoM_change_percent,
+    SUM(total_funded_current_month) OVER (ORDER BY month ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_funded
+FROM monthly_funded
+ORDER BY month;
+
+
+
+
+Output 
++---------+----------------------------+-------------------+--------------------+-------------------+
+| month   | total_funded_current_month | prev_month_funded | MoM_change_percent | cumulative_funded |
++---------+----------------------------+-------------------+--------------------+-------------------+
+| 2021-01 |                   25031650 |              NULL |               NULL |          25031650 |
+| 2021-02 |                   24647825 |          25031650 |              -1.53 |          49679475 |
+| 2021-03 |                   28875700 |          24647825 |              17.15 |          78555175 |
+| 2021-04 |                   29800800 |          28875700 |               3.20 |         108355975 |
+| 2021-05 |                   31738350 |          29800800 |               6.50 |         140094325 |
+| 2021-06 |                   34161475 |          31738350 |               7.63 |         174255800 |
+| 2021-07 |                   35813900 |          34161475 |               4.84 |         210069700 |
+| 2021-08 |                   38149600 |          35813900 |               6.52 |         248219300 |
+| 2021-09 |                   40907725 |          38149600 |               7.23 |         289127025 |
+| 2021-10 |                   44893800 |          40907725 |               9.74 |         334020825 |
+| 2021-11 |                   47754825 |          44893800 |               6.37 |         381775650 |
+| 2021-12 |                   53981425 |          47754825 |              13.04 |         435757075 |
++---------+----------------------------+-------------------+--------------------+-------------------+
+12 rows in set (0.05 sec)
