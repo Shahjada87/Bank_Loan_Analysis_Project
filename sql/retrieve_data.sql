@@ -383,3 +383,72 @@ Output
 
 
 
+5. Average Debt-to-Income Ratio (DTI): Evaluating the average DTI for our borrowers helps us gauge their financial health. 
+We need to compute the average DTI for all loans, MTD, and track Month-over-Month (MoM) fluctuations.
+
+
+select round(avg(dti)*100,2) as Avg_debt_to_income from financial_loan;
+
+
+output
++--------------------+
+| Avg_debt_to_income |
++--------------------+
+|              13.33 |
++--------------------+
+1 row in set (0.03 sec)
+
+
+
+select round(avg(dti)*100,2) as Avg_debt_to_income from financial_loan
+where month(issue_date) = 12 and year(issue_date) = 2021;
+
+
+
+Output
++--------------------+
+| Avg_debt_to_income |
++--------------------+
+|              13.67 |
++--------------------+
+1 row in set (0.03 sec)
+
+
+WITH monthly_dti AS (
+    SELECT 
+        DATE_FORMAT(issue_date, '%Y-%m') AS month,
+        ROUND(AVG(dti)*100, 2) AS avg_dti 
+    FROM financial_loan
+    GROUP BY DATE_FORMAT(issue_date, '%Y-%m')
+)
+SELECT 
+    month,
+    avg_dti,
+    LAG(avg_dti) OVER (ORDER BY month) AS prev_month_dti,
+    ROUND(
+        (avg_dti - LAG(avg_dti) OVER (ORDER BY month)) 
+        / NULLIF(LAG(avg_dti) OVER (ORDER BY month), 0) * 100, 2
+    ) AS MoM_change_percent
+FROM monthly_dti
+ORDER BY month;
+
+
+
+Output
++---------+---------+----------------+--------------------+
+| month   | avg_dti | prev_month_dti | MoM_change_percent |
++---------+---------+----------------+--------------------+
+| 2021-01 |   12.94 |           NULL |               NULL |
+| 2021-02 |   13.41 |          12.94 |               3.63 |
+| 2021-03 |   13.22 |          13.41 |              -1.42 |
+| 2021-04 |   13.22 |          13.22 |                  0 |
+| 2021-05 |   13.33 |          13.22 |               0.83 |
+| 2021-06 |   13.24 |          13.33 |              -0.68 |
+| 2021-07 |   13.29 |          13.24 |               0.38 |
+| 2021-08 |   13.35 |          13.29 |               0.45 |
+| 2021-09 |    13.3 |          13.35 |              -0.37 |
+| 2021-10 |   13.41 |           13.3 |               0.83 |
+| 2021-11 |    13.3 |          13.41 |              -0.82 |
+| 2021-12 |   13.67 |           13.3 |               2.78 |
++---------+---------+----------------+--------------------+
+12 rows in set (0.04 sec)
