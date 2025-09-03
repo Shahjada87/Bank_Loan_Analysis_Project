@@ -96,6 +96,18 @@ git config --global http.postBuffer 524288000
 1. Total Loan Applications: We need to calculate the total number of loan applications received during a specified period.
  Additionally, it is essential to monitor the Month-to-Date (MTD) Loan Applications and track changes Month-over-Month (MoM).
 
+
+Select count(id) as Total_loan_applications_in_2021 from financial_loan;
+
+Output
++---------------------------------+
+| Total_loan_applications_in_2021 |
++---------------------------------+
+|                           38576 |
++---------------------------------+
+1 row in set (0.07 sec)
+
+
 Select count(id) as MonthToDate_Total_loan_applications from financial_loan
 where month(issue_date) = 12 and YEAR(issue_date) = 2021;
 
@@ -223,3 +235,80 @@ Output
 | 2021-12 |                   53981425 |          47754825 |              13.04 |         435757075 |
 +---------+----------------------------+-------------------+--------------------+-------------------+
 12 rows in set (0.05 sec)
+
+
+
+
+3. Total Amount Received: Tracking the total amount received from borrowers is essential for assessing the banks cash flow and loan repayment. 
+We should analyse the Month-to-Date (MTD) Total Amount Received and observe the Month-over-Month (MoM) changes.
+
+
+
+select sum(total_payment) as total_payment_recieved from financial_loan;
+
+
+Output
++------------------------+
+| total_payment_recieved |
++------------------------+
+|              473070933 |
++------------------------+
+1 row in set (0.01 sec)
+
+
+select sum(total_payment) as total_payment_recieved_dec from financial_loan
+where MONTH(issue_date) = 12 and year(issue_date) = 2021;
+
+
+Output
++----------------------------+
+| total_payment_recieved_dec |
++----------------------------+
+|                   58074380 |
++----------------------------+
+1 row in set (0.05 sec)
+
+
+
+
+ WITH monthly_received AS (
+    SELECT 
+        DATE_FORMAT(issue_date, '%Y-%m') AS month,
+        SUM(total_payment) AS total_received_each_month
+    FROM financial_loan
+    GROUP BY DATE_FORMAT(issue_date, '%Y-%m')
+)
+SELECT 
+    month,
+    total_received_each_month,
+    LAG(total_received_each_month) OVER (ORDER BY month) AS prev_month_received,
+    ROUND(
+        (total_received_each_month - LAG(total_received_each_month) OVER (ORDER BY month)) 
+        / NULLIF(LAG(total_received_each_month) OVER (ORDER BY month), 0) * 100, 2
+    ) AS MoM_change_percent,
+    SUM(total_received_each_month) OVER (ORDER BY month ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_received
+FROM monthly_received
+ORDER BY month;
+
+
+Output
++---------+---------------------------+---------------------+--------------------+---------------------+
+| month   | total_received_each_month | prev_month_received | MoM_change_percent | cumulative_received |
++---------+---------------------------+---------------------+--------------------+---------------------+
+| 2021-01 |                  27578836 |                NULL |               NULL |            27578836 |
+| 2021-02 |                  27717745 |            27578836 |               0.50 |            55296581 |
+| 2021-03 |                  32264400 |            27717745 |              16.40 |            87560981 |
+| 2021-04 |                  32495533 |            32264400 |               0.72 |           120056514 |
+| 2021-05 |                  33750523 |            32495533 |               3.86 |           153807037 |
+| 2021-06 |                  36164533 |            33750523 |               7.15 |           189971570 |
+| 2021-07 |                  38827220 |            36164533 |               7.36 |           228798790 |
+| 2021-08 |                  42682218 |            38827220 |               9.93 |           271481008 |
+| 2021-09 |                  43983948 |            42682218 |               3.05 |           315464956 |
+| 2021-10 |                  49399567 |            43983948 |              12.31 |           364864523 |
+| 2021-11 |                  50132030 |            49399567 |               1.48 |           414996553 |
+| 2021-12 |                  58074380 |            50132030 |              15.84 |           473070933 |
++---------+---------------------------+---------------------+--------------------+---------------------+
+12 rows in set (0.05 sec)
+
+
+
