@@ -497,3 +497,21 @@ Output
 1 row in set (0.03 sec)
 
 
+7. Good loan funded amount 
+
+
+Select sum(loan_amount) as Good_loan_funded_amount from financial_loan
+where loan_status = 'Fully paid' or loan_status = 'current';
+
+
+Output
++-------------------------+
+| Good_loan_funded_amount |
++-------------------------+
+|               370224850 |
++-------------------------+
+1 row in set (0.03 sec)
+
+
+
+
