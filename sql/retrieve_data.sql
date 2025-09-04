@@ -481,5 +481,19 @@ Output
 
 
 
+6. Good loan applications 
+
+
+Select count(id) as Good_loan_applications from financial_loan
+where loan_status = 'Fully paid' or loan_status = 'current';
+
+
+Output 
++------------------------+
+| Good_loan_applications |
++------------------------+
+|                  33243 |
++------------------------+
+1 row in set (0.03 sec)
 
 
