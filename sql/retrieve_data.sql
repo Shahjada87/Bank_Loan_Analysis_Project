@@ -528,3 +528,29 @@ Output
 |                       435786170 |
 +---------------------------------+
 1 row in set (0.03 sec)
+
+
+
+
+---------------------- BAD LOAN KPI'S -----------------------------------------------------
+
+
+9. Bad loan application percentage 
+
+
+Select 
+    Round((count(case when loan_status='Charged off' then id end))
+    /
+    count(id) * 100,2) as Bad_loan_percentage
+From financial_loan;
+
+
+
+Output 
++----------------------+
+| Bad_loan_percentage  |
++----------------------+
+|                13.82 |
++----------------------+
+1 row in set (0.03 sec)
+
