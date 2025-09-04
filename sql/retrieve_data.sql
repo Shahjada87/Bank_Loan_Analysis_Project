@@ -452,3 +452,34 @@ Output
 | 2021-12 |   13.67 |           13.3 |               2.78 |
 +---------+---------+----------------+--------------------+
 12 rows in set (0.04 sec)
+
+
+---------------------- GOOD LOAN KPI'S -----------------------------------------------------
+
+select DISTINCT loan_status from financial_loan;
+
+
+5.Good loan application percentage
+
+
+Select 
+    Round((count(case when loan_status='Fully Paid' or loan_status='Current' then id end))
+    /
+    count(id) * 100,2) as good_loan_percentage
+From financial_loan;
+
+
+
+Output
++----------------------+
+| good_loan_percentage |
++----------------------+
+|                86.18 |
++----------------------+
+1 row in set (0.08 sec)
+
+
+
+
+
+
