@@ -514,4 +514,17 @@ Output
 
 
 
+8. Good Loan total amount recieved 
 
+
+Select sum(total_payment) as Good_loan_total_amount_received from financial_loan
+where loan_status = 'Fully paid' or loan_status = 'current';
+
+
+Output
++---------------------------------+
+| Good_loan_total_amount_received |
++---------------------------------+
+|                       435786170 |
++---------------------------------+
+1 row in set (0.03 sec)
