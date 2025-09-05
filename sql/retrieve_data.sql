@@ -554,3 +554,19 @@ Output
 +----------------------+
 1 row in set (0.03 sec)
 
+
+
+10. Bad Loan Applications
+
+
+Select count(id) as Good_loan_applications from financial_loan
+where loan_status = 'Charged Off';
+
+
+Output  
++------------------------+
+| Good_loan_applications |
++------------------------+
+|                   5333 |
++------------------------+
+1 row in set (0.05 sec)
