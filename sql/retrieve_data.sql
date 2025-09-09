@@ -625,3 +625,37 @@ output
 |                            28247462 |
 +-------------------------------------+
 1 row in set (0.04 sec)
+
+
+
+
+14 . Loan status grid view 
+
+WITH base_data AS (
+    SELECT 
+        loan_status,
+        COUNT(id) AS total_loan_applications,
+        SUM(loan_amount) AS total_funded_amount,
+        SUM(total_payment) AS total_amount_received,
+        Round(AVG(int_rate) * 100,2) AS avg_interest_rate,
+        ROUND(AVG(dti)*100,2) AS avg_dti,
+        SUM(loan_amount) as MTD_total_funded_amount,
+        SUM(total_payment) AS mtd_amount_received
+    FROM financial_loan
+    GROUP BY loan_status
+)
+SELECT *
+FROM base_data
+
+
+
+output 
++-------------+-------------------------+---------------------+-----------------------+-------------------+---------+-------------------------+---------------------+
+| loan_status | total_loan_applications | total_funded_amount | total_amount_received | avg_interest_rate | avg_dti | MTD_total_funded_amount | mtd_amount_received |
++-------------+-------------------------+---------------------+-----------------------+-------------------+---------+-------------------------+---------------------+
+| Fully Paid  |                   32145 |           351358350 |             411586256 |             11.64 |   13.17 |               351358350 |           411586256 |
+| Charged Off |                    5333 |            65532225 |              37284763 |             13.88 |      14 |                65532225 |            37284763 |
+| Current     |                    1098 |            18866500 |              24199914 |              15.1 |   14.72 |                18866500 |            24199914 |
++-------------+-------------------------+---------------------+-----------------------+-------------------+---------+-------------------------+---------------------+
+3 rows in set (0.07 sec)
+
