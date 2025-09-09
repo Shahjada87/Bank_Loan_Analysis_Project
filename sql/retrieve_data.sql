@@ -570,3 +570,24 @@ Output
 |                   5333 |
 +------------------------+
 1 row in set (0.05 sec)
+
+
+
+
+11. Bad loan funded amount
+
+
+Select sum(loan_amount) as Bad_loan_funded_amount from financial_loan
+where loan_status = 'Charged Off';
+
+
+Output
++------------------------+
+| Bad_loan_funded_amount |
++------------------------+
+|               65532225 |
++------------------------+
+1 row in set (0.05 sec)
+
+
+
