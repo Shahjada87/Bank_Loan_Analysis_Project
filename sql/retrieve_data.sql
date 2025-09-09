@@ -659,3 +659,40 @@ output
 +-------------+-------------------------+---------------------+-----------------------+-------------------+---------+-------------------------+---------------------+
 3 rows in set (0.07 sec)
 
+
+
+15. Monthly Trends by Issue Date (Line Chart):  To identify seasonality and long-term trends in lending activities
+
+
+
+
+Select 
+    Month(issue_date) as Month_number,
+    DATE_FORMAT(issue_date,'%M') as Month_name,
+    Count(id) as Total_applications,
+    Sum(loan_amount) as total_funded_amount,
+    Sum(total_payment) as Total_payment_recieved
+From financial_loan
+Group by Month(issue_date), DATE_FORMAT(Issue_date,'%M')
+order by Month(issue_date) asc;
+
+
+Output
++--------------+------------+--------------------+---------------------+------------------------+
+| Month_number | Month_name | Total_applications | total_funded_amount | Total_payment_recieved |
++--------------+------------+--------------------+---------------------+------------------------+
+|            1 | January    |               2332 |            25031650 |               27578836 |
+|            2 | February   |               2279 |            24647825 |               27717745 |
+|            3 | March      |               2627 |            28875700 |               32264400 |
+|            4 | April      |               2755 |            29800800 |               32495533 |
+|            5 | May        |               2911 |            31738350 |               33750523 |
+|            6 | June       |               3184 |            34161475 |               36164533 |
+|            7 | July       |               3366 |            35813900 |               38827220 |
+|            8 | August     |               3441 |            38149600 |               42682218 |
+|            9 | September  |               3536 |            40907725 |               43983948 |
+|           10 | October    |               3796 |            44893800 |               49399567 |
+|           11 | November   |               4035 |            47754825 |               50132030 |
+|           12 | December   |               4314 |            53981425 |               58074380 |
++--------------+------------+--------------------+---------------------+------------------------+
+12 rows in set (0.09 sec)
+
