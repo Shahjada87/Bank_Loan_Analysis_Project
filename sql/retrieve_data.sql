@@ -607,3 +607,21 @@ Output
 |                         37284763 |
 +----------------------------------+
 1 row in set (0.03 sec)
+
+
+13. Total loss incurred by the bank against the bad loans 
+
+
+
+Select sum(loan_amount)-sum(total_payment) from financial_loan
+where loan_status = 'charged off';
+
+
+
+output
++-------------------------------------+
+| sum(loan_amount)-sum(total_payment) |
++-------------------------------------+
+|                            28247462 |
++-------------------------------------+
+1 row in set (0.04 sec)
