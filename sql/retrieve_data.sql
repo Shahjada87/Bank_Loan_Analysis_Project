@@ -591,3 +591,19 @@ Output
 
 
 
+12. Bad Loan total amount recieved
+
+
+
+Select sum(total_payment) as Bad_loan_total_pahyment_recieved from financial_loan
+where loan_status = 'Charged Off';
+
+
+
+Output
++----------------------------------+
+| Bad_loan_total_pahyment_recieved |
++----------------------------------+
+|                         37284763 |
++----------------------------------+
+1 row in set (0.03 sec)
