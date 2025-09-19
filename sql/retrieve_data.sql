@@ -829,3 +829,33 @@ Output (Ordered by sum of total funded amount by bank)
 | ME            |                  3 |                9200 |                  10808 |
 +---------------+--------------------+---------------------+------------------------+
 50 rows in set (0.09 sec)
+
+
+
+
+17. Loan Term Analysis (Donut Chart): To allow the client to understand the distribution of loans across various term lengths.
+
+
+
+select 
+    term,
+    count(id) as Total_loan_applications,
+    sum(loan_amount) as Total_funded_applications,
+    sum(total_payment) as total_amount_recieved
+From financial_loan
+group by term
+order By term;
+
+
+
+
+Output
++------------+-------------------------+---------------------------+-----------------------+
+| term       | Total_loan_applications | Total_funded_applications | total_amount_recieved |
++------------+-------------------------+---------------------------+-----------------------+
+|  36 months |                   28237 |                 273041225 |             294709458 |
+|  60 months |                   10339 |                 162715850 |             178361475 |
++------------+-------------------------+---------------------------+-----------------------+
+2 rows in set (0.25 sec)
+
+
