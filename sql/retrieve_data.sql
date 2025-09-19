@@ -859,3 +859,33 @@ Output
 2 rows in set (0.25 sec)
 
 
+18. Employee Length Analysis (Bar Chart): How lending metrics are distributed among borrowers with different employment lengths, helping us assess the impact of employment history on loan applications.
+
+
+select 
+    emp_length,
+    count(id) as Total_loan_applications,
+    sum(loan_amount) as Total_funded_applications,
+    sum(total_payment) as total_amount_recieved
+From financial_loan
+group by emp_length
+order By emp_length;
+
+
+Output
++------------+-------------------------+---------------------------+-----------------------+
+| emp_length | Total_loan_applications | Total_funded_applications | total_amount_recieved |
++------------+-------------------------+---------------------------+-----------------------+
+| < 1 year   |                    4575 |                  44210625 |              47545011 |
+| 1 year     |                    3229 |                  32883125 |              35498348 |
+| 10+ years  |                    8870 |                 116115950 |             125871616 |
+| 2 years    |                    4382 |                  44967975 |              49206961 |
+| 3 years    |                    4088 |                  43937850 |              47551832 |
+| 4 years    |                    3428 |                  37600375 |              40964850 |
+| 5 years    |                    3273 |                  36973625 |              40397571 |
+| 6 years    |                    2228 |                  25612650 |              27908658 |
+| 7 years    |                    1772 |                  20811725 |              22584136 |
+| 8 years    |                    1476 |                  17558950 |              19025777 |
+| 9 years    |                    1255 |                  15084225 |              16516173 |
++------------+-------------------------+---------------------------+-----------------------+
+11 rows in set (0.14 sec)
