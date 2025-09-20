@@ -889,3 +889,43 @@ Output
 | 9 years    |                    1255 |                  15084225 |              16516173 |
 +------------+-------------------------+---------------------------+-----------------------+
 11 rows in set (0.14 sec)
+
+
+
+19. Loan Purpose Breakdown (Bar Chart): Will provide a visual breakdown of loan metrics based on the stated purposes of loans, aiding in the understanding of the primary reasons borrowers seek financing.
+
+
+
+select 
+    purpose,
+    count(id) as Total_loan_applications,
+    sum(loan_amount) as Total_funded_applications,
+    sum(total_payment) as total_amount_recieved
+From financial_loan
+group by purpose
+order By purpose;
+
+
+
+Output
++--------------------+-------------------------+---------------------------+-----------------------+
+| purpose            | Total_loan_applications | Total_funded_applications | total_amount_recieved |
++--------------------+-------------------------+---------------------------+-----------------------+
+| car                |                    1497 |                  10223575 |              11324914 |
+| credit card        |                    4998 |                  58885175 |              65214084 |
+| Debt consolidation |                   18214 |                 232459675 |             253801871 |
+| educational        |                     315 |                   2161650 |               2248380 |
+| home improvement   |                    2876 |                  33350775 |              36380930 |
+| house              |                     366 |                   4824925 |               5185538 |
+| major purchase     |                    2110 |                  17251600 |              18676927 |
+| medical            |                     667 |                   5533225 |               5851372 |
+| moving             |                     559 |                   3748125 |               3999899 |
+| other              |                    3824 |                  31155750 |              33289676 |
+| renewable_energy   |                      94 |                    845750 |                898931 |
+| small business     |                    1776 |                  24123100 |              23814817 |
+| vacation           |                     352 |                   1967950 |               2116738 |
+| wedding            |                     928 |                   9225800 |              10266856 |
++--------------------+-------------------------+---------------------------+-----------------------+
+14 rows in set (0.06 sec)
+
+
