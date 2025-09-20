@@ -929,3 +929,28 @@ Output
 14 rows in set (0.06 sec)
 
 
+20. Home Ownership Analysis (Tree Map): For a hierarchical view of how home ownership impacts loan applications and disbursements.
+
+
+
+select 
+    home_ownership,
+    count(id) as Total_loan_applications,
+    sum(loan_amount) as Total_funded_applications,
+    sum(total_payment) as total_amount_recieved
+From financial_loan
+group by home_ownership
+order By home_ownership;
+
+
+Output 
++----------------+-------------------------+---------------------------+-----------------------+
+| home_ownership | Total_loan_applications | Total_funded_applications | total_amount_recieved |
++----------------+-------------------------+---------------------------+-----------------------+
+| MORTGAGE       |                   17198 |                 219329150 |             238474438 |
+| NONE           |                       3 |                     16800 |                 19053 |
+| OTHER          |                      98 |                   1044975 |               1025257 |
+| OWN            |                    2838 |                  29597675 |              31729129 |
+| RENT           |                   18439 |                 185768475 |             201823056 |
++----------------+-------------------------+---------------------------+-----------------------+
+5 rows in set (0.05 sec)
