@@ -954,3 +954,14 @@ Output
 | RENT           |                   18439 |                 185768475 |             201823056 |
 +----------------+-------------------------+---------------------------+-----------------------+
 5 rows in set (0.05 sec)
+
+
+
+
+
+
+------------
+
+
+I have solved all the problem statemnts given and now I am moving to building the power BI dashboards 
+as per the problem statement.
