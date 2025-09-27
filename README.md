@@ -38,3 +38,9 @@ Please take a look on the screenshots that I am going to add now.
 --Total Amount recieved measure overview
 <img width="1710" height="965" alt="Screenshot 2025-09-27 at 1 01 48 PM" src="https://github.com/user-attachments/assets/23e01178-2d96-45a5-aac6-7d9629bfae0d" />
 
+-- I have also added interaction to the overview page as when one of the KPI is clicked the whole page shows according to the selected KPI
+
+Here I have selected term as 36 months and the whole overview page is showing according to this page 
+
+
+<img width="1710" height="965" alt="Screenshot 2025-09-27 at 1 02 00 PM" src="https://github.com/user-attachments/assets/c18ce669-f2cc-45a9-a790-a8f26f8a526a" />
