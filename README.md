@@ -30,3 +30,4 @@ Please take a look on the screenshots that I am going to add now.
 
 <img width="1710" height="965" alt="Screenshot 2025-09-27 at 1 01 14 PM" src="https://github.com/user-attachments/assets/f61ecf17-0a26-4db9-826f-02f98d38828f" />
 
+<img width="1710" height="965" alt="Screenshot 2025-09-27 at 1 01 28 PM" src="https://github.com/user-attachments/assets/aa608d1c-26fa-4468-ad47-b5877ece57b5" />
