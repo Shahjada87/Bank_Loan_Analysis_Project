@@ -16,3 +16,17 @@ I am going to add one more image of the same dashboard by selecting the option f
 
 <img width="1710" height="965" alt="Screenshot 2025-09-26 at 12 22 14 PM" src="https://github.com/user-attachments/assets/2fe4e70c-0f01-441b-b9c5-30230843a450" />
 
+
+
+
+27/09/2025
+
+Today I have added some more features to the dashboards and added one more dashboard pages to this report that I am working on.
+
+This page is about the Overview of the measure which I am going to showcase using some screenshots of the dashbords.
+
+Please take a look on the screenshots that I am going to add now.
+
+
+<img width="1710" height="965" alt="Screenshot 2025-09-27 at 1 01 14 PM" src="https://github.com/user-attachments/assets/f61ecf17-0a26-4db9-826f-02f98d38828f" />
+
