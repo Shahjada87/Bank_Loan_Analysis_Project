@@ -9,12 +9,12 @@ I built an end-to-end interactive <b>bank loan dashboard in Power BI, anchored b
 This project is designed to be practical for real-world analytics roles, showing how to move from raw data to decision-ready visuals and documentation.
 
 <h5>What I delivered:</h5>
-•	A three-dashboard portfolio: Summary KPI dashboard, Overview dashboard with deeper analytics, and a Details/Grid view.
-•	Dynamic, filter-driven visuals that let stakeholders explore loan data by state, grade, home ownership, loan purpose, term, and more.
-•	SQL-based data preparation and validation, backed by a documented problem statement and data-domain knowledge to ensure business relevance.
-•	Power BI features including KPI visuals, field parameters for dynamic measures, and smooth navigation between dashboards.
+-	A three-dashboard portfolio: Summary KPI dashboard, Overview dashboard with deeper analytics, and a Details/Grid view.
+-	Dynamic, filter-driven visuals that let stakeholders explore loan data by state, grade, home ownership, loan purpose, term, and more.
+-	SQL-based data preparation and validation, backed by a documented problem statement and data-domain knowledge to ensure business relevance.
+-	Power BI features including KPI visuals, field parameters for dynamic measures, and smooth navigation between dashboards.
 
---
+---
 
 
 
