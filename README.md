@@ -22,7 +22,43 @@ This project is designed to be practical for real-world analytics roles, showing
 
 ---
 
-### 🔍 Data and Domain Knowledge
+### 📊 Data and Domain Knowledge
+
+
+#### Data Dictionary
+
+This project is based on a financial loan dataset wchich contains 24 attributes. Below is the detailed data dictionary:
+
+| Column Name                    | Data Type  | Description                                                                       |
+| ------------------------------ | ---------- | --------------------------------------------------------------------------------- |
+| **Loan_ID**                    | String     | Unique identifier for each loan application                                       |
+| **Address_State**              | String     | U.S. state of the borrower’s residence                                            |
+| **Application_Type**           | String     | Indicates if the application is Individual or Joint                               |
+| **Employee_Length**            | String     | Borrower’s employment length (e.g., `< 1 year`, `10+ years`)                      |
+| **Employee_Title**             | String     | Borrower’s job title as reported                                                  |
+| **Grade**                      | String     | Credit grade assigned to the loan (A–G)                                           |
+| **Sub_Grade**                  | String     | Sub-grade classification (e.g., A1, B3)                                           |
+| **Home_Ownership**             | String     | Housing status (`Rent`, `Mortgage`, `Own`, `Other`)                               |
+| **Issue_Date**                 | Date       | Date when the loan was issued                                                     |
+| **Last_Credit_Pull_Date**      | Date       | Most recent date the borrower’s credit was reviewed                               |
+| **Last_Payment_Date**          | Date       | Most recent repayment date recorded                                               |
+| **Next_Payment_Date**          | Date       | Scheduled date for the next repayment                                             |
+| **Loan_Status**                | String     | Current status (`Fully Paid`, `Current`, `Charged Off`)                           |
+| **Member_ID**                  | String     | Borrower’s unique member identifier                                               |
+| **Purpose**                    | String     | Purpose of the loan (e.g., `Debt Consolidation`, `Car`, `Medical`, `Credit Card`) |
+| **Term**                       | Integer    | Loan term length (`36 months` or `60 months`)                                     |
+| **Verification_Status**        | String     | Income verification status (`Verified`, `Not Verified`, `Source Verified`)        |
+| **Annual_Income**              | Numeric    | Borrower’s stated annual income                                                   |
+| **Loan_Amount**                | Numeric    | Original amount of the loan applied for                                           |
+| **Funded_Amount**              | Numeric    | Amount actually funded/disbursed by the bank                                      |
+| **Installment**                | Numeric    | Monthly EMI repayment amount for the borrower                                     |
+| **Interest_Rate**              | Percentage | Interest rate applied to the loan                                                 |
+| **Total_Payment**              | Numeric    | Total amount repaid by the borrower (principal + interest)                        |
+| **DTI (Debt-to-Income Ratio)** | Percentage | Ratio of borrower’s debt to income, used to assess repayment capacity             |
+
+
+This dictionary serves as a **reference for SQL queries, Power BI measures, and dashboard visuals** that I have created in this project.
+
 **•	Data set:** Bank loan data with roughly 38k rows and 24 fields (e.g., ID, address_state, application_type, emp_length, loan_amount, total_payment, int_rate, loan_status etc.).
 
 
@@ -120,10 +156,30 @@ This project is designed to be practical for real-world analytics roles, showing
 
 ---
 
+**Here is a shortcut to screenshots of different dashboards that I built (which I have also pasted down below).**
+
+![Summary Dashboard](documents/Screenshot 2025-09-30 at 10.34.17 AM.png)  
+![Overview Dashboard](documents /Screenshot 2025-09-30 at 11.18.00 AM.png)  
+![Details Dashboard](documents/Screenshot 2025-09-30 at 10.34.41 AM.png)
+
+---
+
+### Onboarding Instructions (How you can too run this project on your local PC)
 
 
+1. Clone this repository
 
+2. Import the SQL file from `sql/retrieve_data.sql` into your database
 
+3. Open Power BI and connect to your SQL Server or flat file.
+
+4. Load the `documents /Bank_loan_Db.pbix` to explore dashboards 
+
+---
+---
+## End Of Project
+---
+---
 26/09/2025
 I am going to add the first power Bi file and image of the dashboard that I have built. After completing all the dashboards I am going to write the complete write up for this project.
 
