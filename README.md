@@ -21,26 +21,49 @@ This project is designed to be practical for real-world analytics roles, showing
 ---
 
 ### 🔍 Data and Domain Knowledge
-**•	Data set:** Bank loan data with roughly 38k rows and 24 fields (e.g., loan ID, state, application type, employee length, loan amount, funded amount, amount received, interest rate, loan status, etc.).
+**•	Data set:** Bank loan data with roughly 38k rows and 24 fields (e.g., ID, address_state, application_type, emp_length, loan_amount, total_payment, int_rate, loan_status etc.).
 
-+-------+---------------+------------------+------------+------------------------+-------+----------------+------------+-----------------------+-------------------+-------------+-------------------+-----------+--------------------+-----------+------------+---------------------+---------------+--------+-------------+----------+-------------+-----------+---------------+
-| id    | address_state | application_type | emp_length | emp_title              | grade | home_ownership | issue_date | last_credit_pull_date | last_payment_date | loan_status | next_payment_date | member_id | purpose            | sub_grade | term       | verification_status | annual_income | dti    | installment | int_rate | loan_amount | total_acc | total_payment |
-+-------+---------------+------------------+------------+------------------------+-------+----------------+------------+-----------------------+-------------------+-------------+-------------------+-----------+--------------------+-----------+------------+---------------------+---------------+--------+-------------+----------+-------------+-----------+---------------+
-| 54734 | CA            | INDIVIDUAL       | < 1 year   |                        | B     | RENT           | 2021-08-09 | 2021-08-12            | 2021-10-11        | Fully Paid  | 2021-11-11        |     80364 | Debt consolidation | B4        |  36 months | Verified            |         85000 | 0.1948 |       829.1 |   0.1189 |       25000 |        42 |         29330 |
-| 55742 | NY            | INDIVIDUAL       | < 1 year   | CNN                    | B     | RENT           | 2021-05-08 | 2021-08-12            | 2021-06-11        | Fully Paid  | 2021-07-11        |    114426 | credit card        | B5        |  36 months | Not Verified        |         65000 | 0.1429 |      228.22 |   0.1071 |        7000 |         7 |          8216 |
-| 57245 | TX            | INDIVIDUAL       | 10+ years  | city of beaumont texas | C     | OWN            | 2021-03-10 | 2021-05-16            | 2021-03-13        | Fully Paid  | 2021-04-13        |    138150 | Debt consolidation | C2        |  36 months | Not Verified        |         54000 | 0.0547 |        40.5 |   0.1311 |        1200 |        31 |          1458 |
-+-------+---------------+------------------+------------+------------------------+-------+----------------+------------+-----------------------+-------------------+-------------+-------------------+-----------+--------------------+-----------+------------+---------------------+---------------+--------+-------------+----------+-------------+-----------+---------------+
+select ID, 
+        address_state, 
+        application_type, 
+        emp_length, 
+        loan_amount, 
+        total_payment, 
+        int_rate, 
+        loan_status 
+from financial_loan 
+limit 3;
+
++-------+---------------+------------------+------------+-------------+---------------+----------+-------------+
+| ID    | address_state | application_type | emp_length | loan_amount | total_payment | int_rate | loan_status |
++-------+---------------+------------------+------------+-------------+---------------+----------+-------------+
+| 54734 | CA            | INDIVIDUAL       | < 1 year   |       25000 |         29330 |   0.1189 | Fully Paid  |
+| 55742 | NY            | INDIVIDUAL       | < 1 year   |        7000 |          8216 |   0.1071 | Fully Paid  |
+| 57245 | TX            | INDIVIDUAL       | 10+ years  |        1200 |          1458 |   0.1311 | Fully Paid  |
++-------+---------------+------------------+------------+-------------+---------------+----------+-------------+
+3 rows in set (0.06 sec)
 
 
 **•	Domain concepts I relied on:**
 
   *	Loan types and statuses (good loans: current or fully paid; bad loans: charged off).
 
++-------------+--------------------+
+| loan_status | total_applications |
++-------------+--------------------+
+| Fully Paid  |        21560434276 |
+| Charged Off |         3710416130 |
+| Current     |         1000835274 |
++-------------+--------------------+
+3 rows in set (0.14 sec)
+
+
   *	Core metrics: total loan applications, total funded amount, total amount received, month-to-date (MTD) values, and month-on-month (MOM) changes.
+
 
   *	Business terms such as DTI (debt-to-income ratio), loan term (e.g., 36/60 months), home ownership status, loan purposes, etc.
 
-**•	Domain Knowledge Documents:** I used reference materials from the course materials to define problem statements, domain terminology, and metric interpretations.
+**•	Domain Knowledge Documents:** I used reference materials from the course materials to define problem statements, domain terminology, and metric interpretations which I have uploaded in my documents folder of this project.
 
 ---
 
