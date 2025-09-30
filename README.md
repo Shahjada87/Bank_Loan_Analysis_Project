@@ -34,28 +34,15 @@ select ID,
 from financial_loan 
 limit 3;
 
-+-------+---------------+------------------+------------+-------------+---------------+----------+-------------+
-| ID    | address_state | application_type | emp_length | loan_amount | total_payment | int_rate | loan_status |
-+-------+---------------+------------------+------------+-------------+---------------+----------+-------------+
-| 54734 | CA            | INDIVIDUAL       | < 1 year   |       25000 |         29330 |   0.1189 | Fully Paid  |
-| 55742 | NY            | INDIVIDUAL       | < 1 year   |        7000 |          8216 |   0.1071 | Fully Paid  |
-| 57245 | TX            | INDIVIDUAL       | 10+ years  |        1200 |          1458 |   0.1311 | Fully Paid  |
-+-------+---------------+------------------+------------+-------------+---------------+----------+-------------+
-3 rows in set (0.06 sec)
+<img width="1001" height="128" alt="image" src="https://github.com/user-attachments/assets/31756840-25a9-49af-bf4c-d2cf8532eca9" />
 
 
 **•	Domain concepts I relied on:**
 
   *	Loan types and statuses (good loans: current or fully paid; bad loans: charged off).
 
-+-------------+--------------------+
-| loan_status | total_applications |
-+-------------+--------------------+
-| Fully Paid  |        21560434276 |
-| Charged Off |         3710416130 |
-| Current     |         1000835274 |
-+-------------+--------------------+
-3 rows in set (0.14 sec)
+<img width="710" height="128" alt="image" src="https://github.com/user-attachments/assets/e38b7746-bac1-4ee5-be1b-f8437a12222c" />
+
 
 
   *	Core metrics: total loan applications, total funded amount, total amount received, month-to-date (MTD) values, and month-on-month (MOM) changes.
