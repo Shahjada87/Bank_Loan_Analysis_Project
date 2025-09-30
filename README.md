@@ -1,4 +1,23 @@
 # Bank_Loan_Analysis_Project
+30/09/2025
+
+Today I am going to write the write up of this project.
+
+<h3>Overview</h3>
+I built an end-to-end interactive <b>bank loan dashboard in Power BI, anchored by SQL queries</b> and a clearly defined problem statement. The dashboards give a bank or financial institution a holistic view of loan portfolio health, with a focus on <b>KPI tracking, loan status analysis, and drill-down insights.</b> 
+
+This project is designed to be practical for real-world analytics roles, showing how to move from raw data to decision-ready visuals and documentation.
+
+<h6>What I delivered:</h6>
+•	A three-dashboard portfolio: Summary KPI dashboard, Overview dashboard with deeper analytics, and a Details/Grid view.
+•	Dynamic, filter-driven visuals that let stakeholders explore loan data by state, grade, home ownership, loan purpose, term, and more.
+•	SQL-based data preparation and validation, backed by a documented problem statement and data-domain knowledge to ensure business relevance.
+•	Power BI features including KPI visuals, field parameters for dynamic measures, and smooth navigation between dashboards.
+
+
+
+
+
 
 26/09/2025
 I am going to add the first power Bi file and image of the dashboard that I have built. After completing all the dashboards I am going to write the complete write up for this project.
