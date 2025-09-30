@@ -965,3 +965,14 @@ Output
 
 I have solved all the problem statemnts given and now I am moving to building the power BI dashboards 
 as per the problem statement.
+
+
+---------------
+
+As I mentioned erlier at the start of this project
+(-- As I am using macbook for this proeject I will be using the docker and azure data studio simuntaneously to
+-- load my raw data to the database. I am also going to give an overview of how to do the same and also
+-- I am going to write the table creation and cleaning data sql query if anybody needs it.)
+
+but rather I used my local MySql in macbook to run sql queries for this project and created the dashboards for this 
+project in windows laptop in power BI.
