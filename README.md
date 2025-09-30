@@ -61,33 +61,33 @@ This project is designed to be practical for real-world analytics roles, showing
   *	MTD and MOM changes for these measures
   *	Average interest rate and average DTI
 *	Visuals I used:
-  *	KPI cards for the core metrics
-  *	A high-level view of loan status distribution (good vs. bad loans)
-  *	A donut chart showing the proportion of good vs. bad loans
+    *	KPI cards for the core metrics
+    *	A high-level view of loan status distribution (good vs. bad loans)
+    *	A donut chart showing the proportion of good vs. bad loans
 *	Interactivity:
-  *	Filters by state, grade, home ownership, loan purpose, and other fields
-  *	Dynamic header and chart titles that reflect the selected measures
-  *	Field parameters to toggle between different measures (total applications, funded amount, amount received)
+    *	Filters by state, grade, home ownership, loan purpose, and other fields
+    *	Dynamic header and chart titles that reflect the selected measures
+    *	Field parameters to toggle between different measures (total applications, funded amount, amount received)
 #### 2.	Overview Dashboard (Deep-dive analytics)
 *	Key views I included:
-  *	Monthly trends by issue date (line chart showing applications, funded amount, and amount received)
-  *	Regional analysis by state (map or regional visualization)
-  *	Loan term analysis (donut chart by term)
-  *	Employee length analysis (bar chart by years of experience)
-  *	Home ownership and loan purpose breakdowns (tree map and stacked visuals)
+    *	Monthly trends by issue date (line chart showing applications, funded amount, and amount received)
+    * Regional analysis by state (map or regional visualization)
+    *	Loan term analysis (donut chart by term)
+    *	Employee length analysis (bar chart by years of experience)
+    *	Home ownership and loan purpose breakdowns (tree map and stacked visuals)
 *	SQL validation:
-  *	All visuals are supported by SQL queries that reproduce the same results as shown in Power BI
-  *	I followed a problem-statement-driven approach to ensure business relevance
+    *	All visuals are supported by SQL queries that reproduce the same results as shown in Power BI
+    *	I followed a problem-statement-driven approach to ensure business relevance
 *	Interactivity:
-  *	Slicers for state, grade, and loan purpose
-  *	Subtle, readable formatting with a consistent color palette
-  *	Cross-filtering among charts for cohesive insights
+    *	Slicers for state, grade, and loan purpose
+    *	Subtle, readable formatting with a consistent color palette
+    *	Cross-filtering among charts for cohesive insights
 #### 3.	Details Dashboard (Grid view)
 *	A detailed table view of loans with fields like loan ID, issue date, home ownership, grade, subgrade, funded amount, interest rate, installments, and amount received
 *	Secondary visuals to summarize per-row metrics without losing granular context
 *	Presentation:
-  *	Clean grid with readable formatting, aligned headers, and legible font sizing
-  *	Focus on enabling stakeholders to inspect individual loans while keeping broader trends visible
+    *	Clean grid with readable formatting, aligned headers, and legible font sizing
+    *	Focus on enabling stakeholders to inspect individual loans while keeping broader trends visible
 
 
 ---
