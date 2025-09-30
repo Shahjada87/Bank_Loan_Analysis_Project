@@ -18,7 +18,6 @@ This project is designed to be practical for real-world analytics roles, showing
    
 4.	Power BI features including KPI visuals, field parameters for dynamic measures, and smooth navigation between dashboards.  
 
-<img width="1000" height="1000" alt="Express-collage" src="https://github.com/user-attachments/assets/df1b1859-516c-46b1-afdd-738b31458c29" />
 
 
 ---
@@ -52,7 +51,7 @@ This project is designed to be practical for real-world analytics roles, showing
 
 ---
 
-### 🔍 What I built
+### 🔍 What I built (Power BI Dashboard)
 #### 1.	Summary Dashboard (KPI-first view)
 * Core KPIs I implemented:
   *	Total loan applications (count of loan IDs)
@@ -91,6 +90,39 @@ This project is designed to be practical for real-world analytics roles, showing
 
 
 ---
+
+
+### How I reproduced this work
+#### Data preparation: (SQL)
+*	I started from the 38k-row bank loan dataset with 24 fields.
+*	I validated data quality (nulls, field existence, data types) and cleaned data.
+*	I prepared SQL queries to compute:
+    *	Total loan applications
+    * Total funded amount
+    * Total amount received
+    *	MOM and MTD metrics
+    * Average interest rate and average DTI
+*	I created domain knowledge and terminology documents to support interpretation of fields (loan status, purpose, home ownership, etc.).
+#### Database setup (SQL Server):
+    *	I created a database (e.g., Bank_Loan_DB).
+    *	I imported the CSV data into a table (e.g., financial_loan).
+    *	I verified that all fields map correctly (ID as primary key, and all the appropriate data types).
+#### SQL validation/documentation:
+    *	I maintained a “Query Document” that records every SQL query used and the corresponding results in Visual Studio Code.
+    *	I saved snapshots of key results to compare with Power BI outputs.
+#### Power BI workflow:
+* Data source: Imported from SQL Server (or a flat CSV workflow if needed).
+    *	I built three dashboards on separate pages: Summary, Overview, and Details.
+    *	I created measures using DAX for KPIs, MOM/MTD calculations, and dynamic field parameter-based charts.
+    * I designed visuals with a consistent color palette and readable typography.
+    *	I added slicers for state, grade and purpose; configured a field parameter to switch between core measures.
+    *	I implemented navigation between dashboards using page navigation buttons.
+
+---
+
+
+
+
 
 26/09/2025
 I am going to add the first power Bi file and image of the dashboard that I have built. After completing all the dashboards I am going to write the complete write up for this project.
