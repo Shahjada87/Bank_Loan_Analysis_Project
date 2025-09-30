@@ -23,16 +23,6 @@ This project is designed to be practical for real-world analytics roles, showing
 ### 🔍 Data and Domain Knowledge
 **•	Data set:** Bank loan data with roughly 38k rows and 24 fields (e.g., ID, address_state, application_type, emp_length, loan_amount, total_payment, int_rate, loan_status etc.).
 
-select ID, 
-        address_state, 
-        application_type, 
-        emp_length, 
-        loan_amount, 
-        total_payment, 
-        int_rate, 
-        loan_status 
-from financial_loan 
-limit 3;
 
 <img width="1001" height="128" alt="image" src="https://github.com/user-attachments/assets/31756840-25a9-49af-bf4c-d2cf8532eca9" />
 
@@ -47,8 +37,13 @@ limit 3;
 
   *	Core metrics: total loan applications, total funded amount, total amount received, month-to-date (MTD) values, and month-on-month (MOM) changes.
 
+<img width="691" height="255" alt="image" src="https://github.com/user-attachments/assets/63d42dbb-8c56-40c9-a519-a5588a47a5b0" />
+
 
   *	Business terms such as DTI (debt-to-income ratio), loan term (e.g., 36/60 months), home ownership status, loan purposes, etc.
+
+<img width="662" height="221" alt="image" src="https://github.com/user-attachments/assets/cddaefe4-3359-48f9-b1a7-b744d905958c" />
+
 
 **•	Domain Knowledge Documents:** I used reference materials from the course materials to define problem statements, domain terminology, and metric interpretations which I have uploaded in my documents folder of this project.
 
