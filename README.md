@@ -20,15 +20,20 @@ This project is designed to be practical for real-world analytics roles, showing
 
 ---
 
-### Data and Domain Knowledge
+### 🔍 Data and Domain Knowledge
 **•	Data set:** Bank loan data with roughly 38k rows and 24 fields (e.g., loan ID, state, application type, employee length, loan amount, funded amount, amount received, interest rate, loan status, etc.).
 
 **•	Domain concepts I relied on:**
-o	Loan types and statuses (good loans: current or fully paid; bad loans: charged off).
-o	Core metrics: total loan applications, total funded amount, total amount received, month-to-date (MTD) values, and month-on-month (MOM) changes.
-o	Business terms such as DTI (debt-to-income ratio), loan term (e.g., 36/60 months), home ownership status, loan purposes, etc.
+
+  *	Loan types and statuses (good loans: current or fully paid; bad loans: charged off).
+
+  *	Core metrics: total loan applications, total funded amount, total amount received, month-to-date (MTD) values, and month-on-month (MOM) changes.
+
+  *	Business terms such as DTI (debt-to-income ratio), loan term (e.g., 36/60 months), home ownership status, loan purposes, etc.
 
 **•	Domain Knowledge Documents:** I used reference materials from the course materials to define problem statements, domain terminology, and metric interpretations.
+
+---
 
 
 
