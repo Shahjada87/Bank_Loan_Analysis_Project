@@ -342,7 +342,7 @@ Output
 
 
 
-WITH monthly_interest AS (
+ WITH monthly_interest AS (
     SELECT 
         DATE_FORMAT(issue_date, '%Y-%m') AS month,
         ROUND(AVG(int_rate) * 100, 2) AS avg_interest_rate -- convert fraction to %
